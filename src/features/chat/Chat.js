@@ -1,5 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
+import {
+  Box,
+  Paper,
+  TextField,
+  Button,
+  Stack,
+  Typography,
+  Avatar,
+} from "@mui/material";
+import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import CloseIcon from "@mui/icons-material/Close";
+import SendIcon from "@mui/icons-material/Send";
+import { deepOrange } from "@mui/material/colors";
 
 const socket = io("http://localhost:5000");
 
@@ -7,10 +20,11 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isChatVisible, setIsChatVisible] = useState(false);
-  const chatEndRef = useRef(null); // Reference for auto-scrolling
+  const chatEndRef = useRef(null); // Reference for auto-scrolling after each new message.
 
   useEffect(() => {
     socket.on("message", (message) => {
+      console.log(message);
       setMessages((prevMessages) => [...prevMessages, message]);
     });
 
@@ -20,112 +34,165 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    // Scroll to bottom whenever messages update
+    // auto-scroll to bottom whenever messages update
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const sendMessage = (e) => {
     e.preventDefault();
     if (input.trim()) {
-      socket.emit("message", `User: ${input}`);
+      socket.emit("message", `${input}`);
       setInput("");
     }
   };
 
   return (
-    <div
-      style={{
-        padding: "20px",
+    //Wrapper for everything chat related
+    <Box
+      component="section"
+      sx={{
         maxWidth: "400px",
         margin: "auto",
-        position: "fixed",
+        position: "absolute",
         bottom: "20px",
         right: "20px",
+        p: 2,
+        borderRadius: 1,
+        // bgcolor: "primary.main",
+        // "&:hover": {
+        //   bgcolor: "primary.dark",
+        // },
       }}
     >
-      <button
-        onClick={() => setIsChatVisible((prev) => !prev)}
-        style={{
-          padding: "10px 20px",
-          backgroundColor: "#007bff",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
-        {isChatVisible ? "Hide Chat" : "Show Chat"}
-      </button>
+      {/* Toggle button for chat */}
+      {!isChatVisible && (
+        <ChatBubbleIcon
+          color="primary"
+          onClick={() => setIsChatVisible((prev) => !prev)}
+        />
+      )}
+      {/* End toggle button for chat */}
+      {/* Start Chat Window */}
       {isChatVisible && (
-        <div>
-          <h2>Bot Chat Phase 1</h2>
-          <div
-            style={{
-              marginTop: "10px",
-              width: "400px",
-              height: "400px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              backgroundColor: "#fff",
-              boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-              padding: "10px",
-              display: "flex",
-              flexDirection: "column",
+        <Box sx={{ width: "400px" }}>
+          <Paper
+            elevation={10}
+            sx={{
+              p: 2,
+              backgroundColor: "primary.light",
+              color: "primary.contrastText",
             }}
           >
-            <div style={{ display: "flex", justifyContent: "right" }}>
-              <div>X</div>
-            </div>
-            <div
-              style={{
-                height: "300px",
-                overflowY: "scroll",
-                border: "1px solid #ccc",
-                padding: "10px",
-                marginBottom: "10px",
-              }}
-            >
-              {messages.map((msg, index) => {
-                const isUser = msg.startsWith("User");
-                return (
-                  <div
-                    key={index}
-                    style={{
-                      display: "flex",
-                      justifyContent: isUser ? "flex-end" : "flex-start",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    {msg.startsWith("Bot") ? (
-                      <strong style={{ color: "blue" }}>{msg}</strong>
-                    ) : (
-                      <strong style={{}}>{msg}</strong>
-                    )}
-                  </div>
-                );
-              })}
-              {/* Empty div to track scroll position */}
-              <div ref={chatEndRef} />
-            </div>
-            <form onSubmit={sendMessage}>
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                style={{ width: "80%", padding: "5px" }}
-                placeholder="Type a message..."
-              />
-              <button
-                type="submit"
-                style={{ padding: "5px 10px", marginLeft: "5px" }}
+            <Box sx={{ overflow: "hidden" }}>
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography>nVidia Advisor</Typography>
+                <CloseIcon onClick={() => setIsChatVisible((prev) => !prev)} />
+              </Box>
+              {/* Message container */}
+              <Box
+                sx={{
+                  maxHeight: "400px",
+                  width: "100%",
+                  overflowY: "scroll",
+                  padding: "10px",
+                  marginBottom: "10px",
+                }}
               >
-                Send
-              </button>
-            </form>
-          </div>
-        </div>
+                {/* Messages */}
+                {messages.map((msg, index) => {
+                  const isUser = msg[0].startsWith("User");
+                  const text = msg[1];
+                  console.log(msg);
+                  return (
+                    // TODO: labels small print on top
+                    // TODO: Remove labels from bubbles
+                    <Box
+                      key={index}
+                      style={{
+                        display: "flex",
+                        justifyContent: isUser ? "flex-end" : "flex-start",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      {msg[0].startsWith("Bot") ? (
+                        <Stack direction={"row"} spacing={1}>
+                          <Avatar sx={{ bgcolor: deepOrange[500] }}>A</Avatar>
+                          <Box>
+                            {/* <Typography
+                              variant="caption"
+                              sx={{ display: "block", pl: 0.5 }}
+                            >
+                              Advisor
+                            </Typography> */}
+                            <Box
+                              sx={{
+                                color: "primary.contrastText",
+                                borderRadius: 1,
+                                bgcolor: "primary.dark",
+                                p: 1,
+                              }}
+                            >
+                              <Typography variant="body2">{text}</Typography>
+                            </Box>
+                          </Box>
+                        </Stack>
+                      ) : (
+                        <Box>
+                          <Typography
+                            variant="caption"
+                            sx={{ display: "block", textAlign: "right", pr: 1 }}
+                          >
+                            You
+                          </Typography>
+                          <Box
+                            sx={{
+                              color: "secondary.contrastText",
+                              borderRadius: 1,
+                              bgcolor: "secondary.main",
+                              p: 1,
+                            }}
+                          >
+                            <Typography variant="body2">{text}</Typography>
+                          </Box>
+                        </Box>
+                      )}
+                    </Box>
+                  );
+                })}
+                {/* End Messages */}
+                <Box ref={chatEndRef} /> {/*Target for auto-scroll */}
+              </Box>
+              {/* End Message Container */}
+              <form onSubmit={sendMessage}>
+                {/* TODO: Move to the right, decide on button or no button */}
+                <Stack direction="row" spacing={2}>
+                  <TextField
+                    id="standard-basic"
+                    // label="Message"
+                    variant="standard"
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Type a message..."
+                    value={input}
+                    aria-label="enter message"
+                    sx={{ width: "100%" }}
+                  />
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    aria-label="send message"
+                    // endIcon={<SendIcon />}
+                  >
+                    <SendIcon />
+                  </Button>
+                </Stack>
+              </form>
+            </Box>
+          </Paper>
+        </Box>
       )}
-    </div>
+      {/* End Chat Window */}
+    </Box> // End Chat Wrapper
   );
 };
 

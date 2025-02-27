@@ -18,7 +18,7 @@ io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
   socket.on("message", (message) => {
-    io.emit("message", message); // Broadcast message to all clients
+    io.emit("message", ["User", message]); // Broadcast message to all clients
 
     // Simulate the server's response
     let reply = "I'm not sure how to respond to that.";
@@ -31,7 +31,7 @@ io.on("connection", (socket) => {
     }
 
     setTimeout(() => {
-      io.emit("message", `Bot: ${reply}`);
+      io.emit("message", ["Bot", reply]);
     }, 1000); // Delay for 'realism'
   });
 
