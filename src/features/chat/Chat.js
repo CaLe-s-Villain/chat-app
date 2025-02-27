@@ -69,6 +69,7 @@ const Chat = () => {
         <ChatBubbleIcon
           color="primary"
           onClick={() => setIsChatVisible((prev) => !prev)}
+          sx={{ fontSize: 40 }}
         />
       )}
       {/* End toggle button for chat */}
@@ -78,15 +79,28 @@ const Chat = () => {
           <Paper
             elevation={10}
             sx={{
-              p: 2,
+              // pl: 2,
+              // pr: 2,
+              pb: 2,
               backgroundColor: "primary.light",
               color: "primary.contrastText",
+              overflow: "hidden",
             }}
           >
-            <Box sx={{ overflow: "hidden" }}>
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography>nVidia Advisor</Typography>
-                <CloseIcon onClick={() => setIsChatVisible((prev) => !prev)} />
+            <Box sx={{ overflow: "hidden", pt: 0, width: "100%" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  backgroundColor: "primary.dark",
+                  mt: 0,
+                }}
+              >
+                <Typography sx={{ p: 2 }}>NVIDIA Advisor</Typography>
+                <CloseIcon
+                  onClick={() => setIsChatVisible((prev) => !prev)}
+                  sx={{ mr: 2, mt: 2 }}
+                />
               </Box>
               {/* Message container */}
               <Box
@@ -165,7 +179,7 @@ const Chat = () => {
               {/* End Message Container */}
               <form onSubmit={sendMessage}>
                 {/* TODO: Move to the right, decide on button or no button */}
-                <Stack direction="row" spacing={2}>
+                <Stack direction="row" spacing={2} sx={{ pl: 2, pr: 2 }}>
                   <TextField
                     id="standard-basic"
                     // label="Message"
