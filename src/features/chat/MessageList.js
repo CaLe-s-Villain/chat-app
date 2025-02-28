@@ -23,7 +23,7 @@ const MessageList = ({ messages }) => {
       {messages.map((msg, index) => {
         const isUser = msg[0].startsWith("User");
         const text = msg[1];
-        console.log(msg);
+
         return (
           <Box
             key={index}
