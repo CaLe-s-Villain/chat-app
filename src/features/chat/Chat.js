@@ -58,10 +58,6 @@ const Chat = () => {
         right: "20px",
         p: 2,
         borderRadius: 1,
-        // bgcolor: "primary.main",
-        // "&:hover": {
-        //   bgcolor: "primary.dark",
-        // },
       }}
     >
       {/* Toggle button for chat */}
@@ -75,8 +71,6 @@ const Chat = () => {
           <Paper
             elevation={10}
             sx={{
-              // pl: 2,
-              // pr: 2,
               pb: 2,
               backgroundColor: "primary.light",
               color: "primary.contrastText",
@@ -126,12 +120,6 @@ const Chat = () => {
                         <Stack direction={"row"} spacing={1}>
                           <Avatar sx={{ bgcolor: deepOrange[500] }}>A</Avatar>
                           <Box>
-                            {/* <Typography
-                              variant="caption"
-                              sx={{ display: "block", pl: 0.5 }}
-                            >
-                              Advisor
-                            </Typography> */}
                             <Box
                               sx={{
                                 color: "primary.contrastText",
@@ -188,7 +176,6 @@ const Chat = () => {
                     variant="contained"
                     color="primary"
                     aria-label="send message"
-                    // endIcon={<SendIcon />}
                   >
                     <SendIcon />
                   </Button>
