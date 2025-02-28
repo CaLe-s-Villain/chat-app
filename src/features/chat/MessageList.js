@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { Box, Stack, Typography, Avatar } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
+import MessageItemBot from "./MessageItemBot";
+import MessageItemUser from "./MessageItemUser";
 
 const MessageList = ({ messages }) => {
   const chatEndRef = useRef(null);
@@ -34,40 +36,9 @@ const MessageList = ({ messages }) => {
             }}
           >
             {msg[0].startsWith("Bot") ? (
-              <Stack direction={"row"} spacing={1}>
-                <Avatar sx={{ bgcolor: deepOrange[500] }}>A</Avatar>
-                <Box>
-                  <Box
-                    sx={{
-                      color: "primary.contrastText",
-                      borderRadius: 1,
-                      bgcolor: "primary.dark",
-                      p: 1,
-                    }}
-                  >
-                    <Typography variant="body2">{text}</Typography>
-                  </Box>
-                </Box>
-              </Stack>
+              <MessageItemBot message={text} />
             ) : (
-              <Box>
-                <Typography
-                  variant="caption"
-                  sx={{ display: "block", textAlign: "right", pr: 1 }}
-                >
-                  You
-                </Typography>
-                <Box
-                  sx={{
-                    color: "secondary.contrastText",
-                    borderRadius: 1,
-                    bgcolor: "secondary.main",
-                    p: 1,
-                  }}
-                >
-                  <Typography variant="body2">{text}</Typography>
-                </Box>
-              </Box>
+              <MessageItemUser message={text} />
             )}
           </Box>
         );

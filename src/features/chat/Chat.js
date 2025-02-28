@@ -8,9 +8,7 @@ const socket = io("http://localhost:5000");
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [isChatVisible, setIsChatVisible] = useState(false);
-  // const chatEndRef = useRef(null); // Reference for auto-scrolling after each new message.
 
   useEffect(() => {
     socket.on("message", (message) => {
