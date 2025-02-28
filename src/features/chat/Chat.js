@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
-import { Box, Paper } from "@mui/material";
+import { Box } from "@mui/material";
 import ChatButton from "./ChatButton";
 import ChatWindow from "./ChatWindow";
 
@@ -31,7 +31,7 @@ const Chat = () => {
     <Box
       component="section"
       sx={{
-        maxWidth: "400px",
+        width: "400px",
         margin: "auto",
         position: "absolute",
         bottom: "20px",
@@ -45,27 +45,15 @@ const Chat = () => {
         <ChatButton toggleChat={() => setIsChatVisible((prev) => !prev)} />
       )}
       {/* End toggle button for chat */}
-      {/* Start Chat Window */}
+      {/* Start Chat Window Container */}
       {isChatVisible && (
-        <Box sx={{ width: "400px" }}>
-          <Paper
-            elevation={10}
-            sx={{
-              pb: 2,
-              backgroundColor: "primary.light",
-              color: "primary.contrastText",
-              overflow: "hidden",
-            }}
-          >
-            <ChatWindow
-              messages={messages}
-              sendMessage={sendMessage}
-              setIsChatVisible={setIsChatVisible}
-            />
-          </Paper>
-        </Box>
+        <ChatWindow
+          messages={messages}
+          sendMessage={sendMessage}
+          setIsChatVisible={setIsChatVisible}
+        />
       )}
-      {/* End Chat Window */}
+      {/* End Chat Window Container */}
     </Box> // End Chat Wrapper
   );
 };
