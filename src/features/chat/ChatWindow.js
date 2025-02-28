@@ -25,7 +25,7 @@ const ChatWindow = ({ messages, sendMessage, setIsChatVisible }) => {
           mt: 0,
         }}
       >
-        <Typography sx={{ p: 2 }}>NVIDIA Advisor</Typography>
+        <Typography sx={{ p: 2 }}>Wealth Advisor</Typography>
         <CloseIcon
           onClick={() => setIsChatVisible((prev) => !prev)}
           sx={{ mr: 2, mt: 2 }}
