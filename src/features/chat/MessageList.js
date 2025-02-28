@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Box, Stack, Typography, Avatar } from "@mui/material";
-import { deepOrange } from "@mui/material/colors";
+import { Box } from "@mui/material";
 import MessageItemBot from "./MessageItemBot";
 import MessageItemUser from "./MessageItemUser";
 

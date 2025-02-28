@@ -5,7 +5,7 @@ import { deepOrange } from "@mui/material/colors";
 const MessageItemBot = ({ message }) => {
   return (
     <Stack direction={"row"} spacing={1}>
-      <Avatar sx={{ bgcolor: deepOrange[500] }}>A</Avatar>
+      <Avatar sx={{ bgcolor: deepOrange[500] }}>WA</Avatar>
       <Box>
         <Box
           sx={{
