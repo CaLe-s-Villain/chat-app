@@ -22,16 +22,44 @@ io.on("connection", (socket) => {
 
     // Simulate the server's response
     let reply = "I'm not sure how to respond to that.";
+    let responseType = "text"; // default response type will be text
+
     if (message.toLowerCase().includes("hello")) {
       reply = "Hello, User";
     } else if (message.toLowerCase().includes("how are you")) {
       reply = "I'm just a bot, but I'm doing great!";
     } else if (message.toLowerCase().includes("bye")) {
       reply = "Goodbye! Have a great day!";
+    } else if (message.toLowerCase().includes("show me a pie chart")) {
+      responseType = "chart";
+      reply = {
+        type: "pie",
+        data: [
+          { name: "Apples", value: 40 },
+          { name: "Bananas", value: 30 },
+          { name: "Oranges", value: 20 },
+          { name: "Grapes", value: 10 },
+        ],
+      };
+    } else if (message.toLowerCase().includes("show me a bar chart")) {
+      responseType = "chart";
+      reply = {
+        type: "bar",
+        data: [
+          { name: "Monday", value: 10 },
+          { name: "Tuesday", value: 20 },
+          { name: "Wednesday", value: 15 },
+          { name: "Thursday", value: 1025 },
+          { name: "Monday", value: 30 },
+        ],
+      };
     }
-
     setTimeout(() => {
-      io.emit("message", ["Bot", reply]);
+      io.emit("message", [
+        "Bot",
+        responseType === "text" ? reply : reply,
+        responseType,
+      ]);
     }, 1000); // Delay for 'realism'
   });
 
