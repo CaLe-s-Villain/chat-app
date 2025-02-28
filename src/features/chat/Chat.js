@@ -32,6 +32,8 @@ const Chat = () => {
         width: "400px",
         margin: "auto",
         position: "absolute",
+        display: "flex",
+        justifyContent: "right",
         bottom: "20px",
         right: "20px",
         p: 2,
