@@ -114,8 +114,6 @@ const Chat = () => {
                   const text = msg[1];
                   console.log(msg);
                   return (
-                    // TODO: labels small print on top
-                    // TODO: Remove labels from bubbles
                     <Box
                       key={index}
                       style={{
@@ -174,7 +172,6 @@ const Chat = () => {
               </Box>
               {/* End Message Container */}
               <form onSubmit={sendMessage}>
-                {/* TODO: Move to the right, decide on button or no button */}
                 <Stack direction="row" spacing={2} sx={{ pl: 2, pr: 2 }}>
                   <TextField
                     id="standard-basic"
