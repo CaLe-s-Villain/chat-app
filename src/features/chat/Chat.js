@@ -7,12 +7,11 @@ import {
   Button,
   Stack,
   Typography,
-  Avatar,
 } from "@mui/material";
-import ChatButton from "./ChatButton";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
-import { deepOrange } from "@mui/material/colors";
+import ChatButton from "./ChatButton";
+import MessageList from "./MessageList";
 
 const socket = io("http://localhost:5000");
 
@@ -93,71 +92,7 @@ const Chat = () => {
                 />
               </Box>
               {/* Message container */}
-              <Box
-                sx={{
-                  maxHeight: "400px",
-                  width: "100%",
-                  overflowY: "scroll",
-                  padding: "10px",
-                  marginBottom: "10px",
-                }}
-              >
-                {/* Messages */}
-                {messages.map((msg, index) => {
-                  const isUser = msg[0].startsWith("User");
-                  const text = msg[1];
-                  console.log(msg);
-                  return (
-                    <Box
-                      key={index}
-                      style={{
-                        display: "flex",
-                        justifyContent: isUser ? "flex-end" : "flex-start",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      {msg[0].startsWith("Bot") ? (
-                        <Stack direction={"row"} spacing={1}>
-                          <Avatar sx={{ bgcolor: deepOrange[500] }}>A</Avatar>
-                          <Box>
-                            <Box
-                              sx={{
-                                color: "primary.contrastText",
-                                borderRadius: 1,
-                                bgcolor: "primary.dark",
-                                p: 1,
-                              }}
-                            >
-                              <Typography variant="body2">{text}</Typography>
-                            </Box>
-                          </Box>
-                        </Stack>
-                      ) : (
-                        <Box>
-                          <Typography
-                            variant="caption"
-                            sx={{ display: "block", textAlign: "right", pr: 1 }}
-                          >
-                            You
-                          </Typography>
-                          <Box
-                            sx={{
-                              color: "secondary.contrastText",
-                              borderRadius: 1,
-                              bgcolor: "secondary.main",
-                              p: 1,
-                            }}
-                          >
-                            <Typography variant="body2">{text}</Typography>
-                          </Box>
-                        </Box>
-                      )}
-                    </Box>
-                  );
-                })}
-                {/* End Messages */}
-                <Box ref={chatEndRef} /> {/*Target for auto-scroll */}
-              </Box>
+              <MessageList messages={messages} />
               {/* End Message Container */}
               <form onSubmit={sendMessage}>
                 <Stack direction="row" spacing={2} sx={{ pl: 2, pr: 2 }}>
