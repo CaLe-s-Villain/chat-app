@@ -9,7 +9,7 @@ import {
   Typography,
   Avatar,
 } from "@mui/material";
-import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import ChatButton from "./ChatButton";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
 import { deepOrange } from "@mui/material/colors";
@@ -66,11 +66,7 @@ const Chat = () => {
     >
       {/* Toggle button for chat */}
       {!isChatVisible && (
-        <ChatBubbleIcon
-          color="primary"
-          onClick={() => setIsChatVisible((prev) => !prev)}
-          sx={{ fontSize: 40 }}
-        />
+        <ChatButton toggleChat={() => setIsChatVisible((prev) => !prev)} />
       )}
       {/* End toggle button for chat */}
       {/* Start Chat Window */}
