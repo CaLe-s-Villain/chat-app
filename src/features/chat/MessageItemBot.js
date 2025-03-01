@@ -1,6 +1,7 @@
 import React from "react";
-import { Stack, Avatar, Box, Typography } from "@mui/material";
+import { Stack, Avatar, Box } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
+import ResponseText from "./ResponseText";
 
 const MessageItemBot = ({ message }) => {
   return (
@@ -15,7 +16,7 @@ const MessageItemBot = ({ message }) => {
             p: 1,
           }}
         >
-          <Typography variant="body2">{message}</Typography>
+          <ResponseText message={message} />
         </Box>
       </Box>
     </Stack>

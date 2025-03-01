@@ -11,8 +11,8 @@ const ChatWindow = ({ messages, sendMessage, setIsChatVisible }) => {
       sx={{
         pb: 2,
         pt: 0,
-        backgroundColor: "primary.light",
-        color: "primary.contrastText",
+        // backgroundColor: "primary.light",
+        // color: "primary.contrastText",
         overflow: "hidden",
         width: "100%",
       }}

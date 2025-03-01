@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { Box } from "@mui/material";
 import MessageItemBot from "./MessageItemBot";
 import MessageItemUser from "./MessageItemUser";
+import ResponsePieChart from "./ResponsePieChart";
+import ResponseBarChart from "./ResponseBarChart";
 
 const MessageList = ({ messages }) => {
   const chatEndRef = useRef(null);
@@ -22,9 +24,16 @@ const MessageList = ({ messages }) => {
     >
       {/* Messages */}
       {messages.map((msg, index) => {
+        console.log(msg);
         const isUser = msg[0].startsWith("User");
         const text = msg[1];
-
+        if (Array.isArray(msg) && msg[2] === "chart") {
+          return msg[1].type === "pie" ? (
+            <ResponsePieChart key={index} data={msg[1].data} />
+          ) : (
+            <ResponseBarChart key={index} data={msg[1].data} />
+          );
+        }
         return (
           <Box
             key={index}
