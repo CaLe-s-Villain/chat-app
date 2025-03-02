@@ -27,9 +27,9 @@ const MessageList = ({ messages }) => {
     >
       {/* Messages */}
       {messages.map((msg, index) => {
-        console.log(msg);
         const isUser = msg[0].startsWith("User");
         const text = msg[1];
+
         if (Array.isArray(msg) && msg[2] === "chart") {
           return msg[1].type === "pie" ? (
             <ResponsePieChart key={index} data={msg[1].data} />
@@ -37,6 +37,7 @@ const MessageList = ({ messages }) => {
             <ResponseBarChart key={index} data={msg[1].data} />
           );
         }
+
         return (
           <Box
             key={index}
