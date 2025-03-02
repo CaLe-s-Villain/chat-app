@@ -20,6 +20,9 @@ const MessageList = ({ messages }) => {
         overflowY: "scroll",
         padding: "10px",
         marginBottom: "10px",
+        "&::-webkit-scrollbar": { display: "none" }, // Hide scrollbar in WebKit browsers
+        "-ms-overflow-style": "none", // Hide scrollbar in IE & Edge
+        "scrollbar-width": "none", // Hide scrollbar in Firefox
       }}
     >
       {/* Messages */}
