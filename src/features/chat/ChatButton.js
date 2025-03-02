@@ -6,7 +6,7 @@ const ChatButton = ({ toggleChat }) => {
     <ChatBubbleIcon
       color="primary"
       onClick={toggleChat}
-      sx={{ fontSize: 40 }}
+      sx={{ fontSize: 40, position: "absolute", bottom: "20px", right: "20px" }}
     />
   );
 };

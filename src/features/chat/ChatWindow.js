@@ -12,7 +12,15 @@ const ChatWindow = ({ toggleChat, messages, sendMessage }) => {
         pb: 2,
         pt: 0,
         overflow: "hidden",
-        width: "100%",
+        width: "400px",
+        margin: "auto",
+        position: "absolute",
+        // display: "flex",
+        justifyContent: "right",
+        bottom: "20px",
+        right: "20px",
+        p: 2,
+        borderRadius: 1,
       }}
     >
       <ChatTitleBar toggleChat={toggleChat} />

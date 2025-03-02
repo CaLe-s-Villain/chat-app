@@ -1,35 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box } from "@mui/material";
 import ChatButton from "./ChatButton";
 import ChatWindow from "./ChatWindow";
 
-const chatContainerStyles = {
-  width: "400px",
-  margin: "auto",
-  position: "absolute",
-  display: "flex",
-  justifyContent: "right",
-  bottom: "20px",
-  right: "20px",
-  p: 2,
-  borderRadius: 1,
-};
-
-const ChatContainer = ({ messages, sendMessage }) => {
-  const [isChatVisible, setIsChatVisible] = useState(false);
-
+const ChatContainer = ({
+  messages,
+  sendMessage,
+  isChatVisible,
+  toggleChat,
+}) => {
   return (
     //Wrapper for everything chat related
-    <Box component="section" sx={{ chatContainerStyles }}>
+    <Box component="section" id="chat-container">
       {/* Toggle button for chat */}
-      {!isChatVisible && (
-        <ChatButton toggleChat={() => setIsChatVisible((prev) => !prev)} />
-      )}
+      {!isChatVisible && <ChatButton toggleChat={toggleChat} />}
       {/* End toggle button for chat */}
       {/* Start Chat Window Container */}
       {isChatVisible && (
         <ChatWindow
-          toggleChat={() => setIsChatVisible((prev) => !prev)}
+          toggleChat={toggleChat}
           messages={messages}
           sendMessage={sendMessage}
         />
