@@ -50,7 +50,7 @@ io.on("connection", (socket) => {
           { name: "Tuesday", value: 20 },
           { name: "Wednesday", value: 15 },
           { name: "Thursday", value: 25 },
-          { name: "Monday", value: 30 },
+          { name: "Friday", value: 30 },
         ],
       };
     }
