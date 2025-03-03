@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Box } from "@mui/material";
-import MessageItemBot from "./MessageItemBot";
-import MessageItemUser from "./MessageItemUser";
+import MessageItem from "./MessageItem";
 import ResponsePieChart from "./ResponsePieChart";
 import ResponseBarChart from "./ResponseBarChart";
 
@@ -47,11 +46,7 @@ const MessageList = ({ messages }) => {
               marginBottom: "10px",
             }}
           >
-            {msg[0].startsWith("Bot") ? (
-              <MessageItemBot message={text} />
-            ) : (
-              <MessageItemUser message={text} />
-            )}
+            <MessageItem isUser={isUser} message={text} />
           </Box>
         );
       })}

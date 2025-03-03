@@ -1,23 +1,30 @@
 import React from "react";
-import { Stack, Avatar, Box } from "@mui/material";
+import { Stack, Avatar, Box, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import ResponseText from "./ResponseText";
 
-const chatBubbleStyles = {
+const botBubbleStyles = {
   color: "primary.contrastText",
   borderRadius: 1,
   bgcolor: "primary.dark",
   p: 1,
 };
 
+const userBubbleStyles = {
+  color: "secondary.contrastText",
+  borderRadius: 1,
+  bgcolor: "secondary.main",
+  p: 1,
+};
+
 const botAvatarStyles = { bgcolor: deepOrange[500] };
 
-const MessageItemBot = ({ message }) => {
+const MessageItem = ({ message, isUser }) => {
   return (
     <Stack direction={"row"} spacing={1}>
-      <Avatar sx={botAvatarStyles}>WA</Avatar>
+      {!isUser && <Avatar sx={botAvatarStyles}>WA</Avatar>}
       <Box>
-        <Box sx={chatBubbleStyles}>
+        <Box sx={isUser ? userBubbleStyles : botBubbleStyles}>
           <ResponseText message={message} />
         </Box>
       </Box>
@@ -25,4 +32,4 @@ const MessageItemBot = ({ message }) => {
   );
 };
 
-export default MessageItemBot;
+export default MessageItem;
