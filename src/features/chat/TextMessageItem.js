@@ -18,7 +18,7 @@ const userBubbleStyles = {
 
 const botAvatarStyles = { bgcolor: deepOrange[500] };
 
-const MessageItem = ({ message, isUser, key }) => {
+const TextMessageItem = ({ message, isUser, key }) => {
   return (
     <Box
       key={key}
@@ -31,6 +31,11 @@ const MessageItem = ({ message, isUser, key }) => {
       <Stack direction={"row"} spacing={1}>
         {!isUser && <Avatar sx={botAvatarStyles}>WA</Avatar>}
         <Box>
+          {isUser ? (
+            <Typography sx={{ textAlign: "right" }}>You</Typography>
+          ) : (
+            ""
+          )}
           <Box sx={isUser ? userBubbleStyles : botBubbleStyles}>
             <Typography variant="body2">{message}</Typography>
           </Box>
@@ -40,4 +45,4 @@ const MessageItem = ({ message, isUser, key }) => {
   );
 };
 
-export default MessageItem;
+export default TextMessageItem;

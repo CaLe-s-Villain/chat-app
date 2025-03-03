@@ -5,7 +5,9 @@ import ChatContainer from "./ChatContainer";
 const socket = io("http://localhost:5001");
 
 const Chat = () => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    ["Bot", "Hello! How can I assist you today?"],
+  ]);
   const [isChatVisible, setIsChatVisible] = useState(false);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const Chat = () => {
   const sendMessage = (input) => {
     socket.emit("message", `${input}`);
   };
-
+  console.log(messages);
   return (
     <ChatContainer
       messages={messages}
