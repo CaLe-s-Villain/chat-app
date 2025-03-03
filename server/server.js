@@ -35,10 +35,10 @@ io.on("connection", (socket) => {
       reply = {
         type: "pie",
         data: [
-          { name: "Apples", quantity: 40 },
-          { name: "Bananas", quantity: 30 },
-          { name: "Oranges", quantity: 20 },
-          { name: "Grapes", quantity: 10 },
+          { name: "Apples", value: 40 },
+          { name: "Bananas", value: 30 },
+          { name: "Oranges", value: 20 },
+          { name: "Grapes", value: 10 },
         ],
       };
     } else if (message.toLowerCase().includes("show me a bar chart")) {
