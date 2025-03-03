@@ -35,10 +35,10 @@ io.on("connection", (socket) => {
       reply = {
         type: "pie",
         data: [
-          { name: "Apples", value: 40 },
-          { name: "Bananas", value: 30 },
-          { name: "Oranges", value: 20 },
-          { name: "Grapes", value: 10 },
+          { name: "Apples", quantity: 40 },
+          { name: "Bananas", quantity: 30 },
+          { name: "Oranges", quantity: 20 },
+          { name: "Grapes", quantity: 10 },
         ],
       };
     } else if (message.toLowerCase().includes("show me a bar chart")) {
@@ -46,11 +46,11 @@ io.on("connection", (socket) => {
       reply = {
         type: "bar",
         data: [
-          { name: "M", value: 10 },
-          { name: "T", value: 20 },
-          { name: "W", value: 15 },
-          { name: "Th", value: 25 },
-          { name: "F", value: 30 },
+          { name: "M", Attended: 10 },
+          { name: "T", Attended: 20 },
+          { name: "W", Attended: 15 },
+          { name: "Th", Attended: 25 },
+          { name: "F", Attended: 30 },
         ],
       };
     }

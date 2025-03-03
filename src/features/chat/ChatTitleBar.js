@@ -1,19 +1,23 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
 
-const chatTitleBatStyles = {
+const chatTitleBarStyles = {
   display: "flex",
   justifyContent: "space-between",
   backgroundColor: "primary.dark",
   mt: 0,
 };
 
+const chatTitleTextStyles = { p: 2, flexGrow: 1, textAlign: "center" };
+
 const ChatTitleBar = ({ toggleChat }) => {
   return (
-    <Box sx={chatTitleBatStyles}>
-      <Typography sx={{ p: 2 }}>Wealth Advisor</Typography>
-      <CloseIcon onClick={toggleChat} sx={{ mr: 2, mt: 2 }} />
+    <Box sx={chatTitleBarStyles}>
+      <Typography sx={chatTitleTextStyles} fontSize="large">
+        Wealth Advisor
+      </Typography>
+      <IndeterminateCheckBoxIcon onClick={toggleChat} sx={{ mr: 2, mt: 2 }} />
     </Box>
   );
 };

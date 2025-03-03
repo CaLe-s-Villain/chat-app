@@ -8,7 +8,7 @@ const ResponseBarChart = ({ data }) => {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="value" fill="#82ca9d" />
+      <Bar dataKey="Attended" fill="#82ca9d" />
     </BarChart>
   );
 };
