@@ -1,7 +1,6 @@
 import React from "react";
 import { Stack, Avatar, Box, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
-import ResponseText from "./ResponseText";
 
 const botBubbleStyles = {
   color: "primary.contrastText",
@@ -19,16 +18,25 @@ const userBubbleStyles = {
 
 const botAvatarStyles = { bgcolor: deepOrange[500] };
 
-const MessageItem = ({ message, isUser }) => {
+const MessageItem = ({ message, isUser, key }) => {
   return (
-    <Stack direction={"row"} spacing={1}>
-      {!isUser && <Avatar sx={botAvatarStyles}>WA</Avatar>}
-      <Box>
-        <Box sx={isUser ? userBubbleStyles : botBubbleStyles}>
-          <ResponseText message={message} />
+    <Box
+      key={key}
+      style={{
+        display: "flex",
+        justifyContent: isUser ? "flex-end" : "flex-start",
+        marginBottom: "10px",
+      }}
+    >
+      <Stack direction={"row"} spacing={1}>
+        {!isUser && <Avatar sx={botAvatarStyles}>WA</Avatar>}
+        <Box>
+          <Box sx={isUser ? userBubbleStyles : botBubbleStyles}>
+            <Typography variant="body2">{message}</Typography>
+          </Box>
         </Box>
-      </Box>
-    </Stack>
+      </Stack>
+    </Box>
   );
 };
 
