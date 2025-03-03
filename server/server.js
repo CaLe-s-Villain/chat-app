@@ -1,7 +1,7 @@
-const express = require("express");
-const http = require("http");
-const cors = require("cors");
-const { Server } = require("socket.io");
+import express from "express";
+import http from "http";
+import cors from "cors";
+import { Server } from "socket.io";
 
 const app = express();
 app.use(cors());
@@ -46,11 +46,11 @@ io.on("connection", (socket) => {
       reply = {
         type: "bar",
         data: [
-          { name: "Monday", value: 10 },
-          { name: "Tuesday", value: 20 },
-          { name: "Wednesday", value: 15 },
-          { name: "Thursday", value: 25 },
-          { name: "Friday", value: 30 },
+          { name: "M", value: 10 },
+          { name: "T", value: 20 },
+          { name: "W", value: 15 },
+          { name: "Th", value: 25 },
+          { name: "F", value: 30 },
         ],
       };
     }
