@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Stack, TextField, Button } from "@mui/material";
+import { Stack, TextField, InputAdornment, IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
 const ChatInput = ({ sendMessage }) => {
@@ -19,21 +19,37 @@ const ChatInput = ({ sendMessage }) => {
         <TextField
           id="standard-basic"
           // label="Message"
-          variant="standard"
+          autoComplete="off"
+          variant="outlined"
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message..."
           value={input}
           aria-label="enter message"
-          sx={{ width: "100%" }}
+          fullWidth
+          sx={{
+            borderRadius: "25px",
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "25px", // Targets the input container
+            },
+          }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton edge="end" color="primary" type="submit">
+                  <SendIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
-        <Button
+        {/* <Button
           type="submit"
           variant="contained"
           color="primary"
           aria-label="send message"
         >
           <SendIcon />
-        </Button>
+        </Button> */}
       </Stack>
     </form>
   );

@@ -46,11 +46,11 @@ io.on("connection", (socket) => {
       reply = {
         type: "bar",
         data: [
-          { name: "M", value: 10 },
-          { name: "T", value: 20 },
-          { name: "W", value: 15 },
-          { name: "Th", value: 25 },
-          { name: "F", value: 30 },
+          { name: "M", Attended: 10 },
+          { name: "T", Attended: 20 },
+          { name: "W", Attended: 15 },
+          { name: "Th", Attended: 25 },
+          { name: "F", Attended: 30 },
         ],
       };
     }
